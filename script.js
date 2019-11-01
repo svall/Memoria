@@ -93,7 +93,7 @@ function newImg () {
     // newImgDiv.setAttribute("id","img"+i);
     newImgDiv.id = "carta"+i;
     newImgDiv.src = numArray[i];
-    newImgDiv.style.cssText = 'height:95%;width:95%;display:inline-block;padding:3px;opacity:0.0';
+    newImgDiv.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.0';
     // contImgDiv.style.backgroundColor = "red";
     newImgDiv.addEventListener("click", selectCard);
     var containerDiv = document.getElementById("smallContainer");
