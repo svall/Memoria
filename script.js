@@ -20,6 +20,7 @@ function sortFunc(a, b) {
 
 function alertWin() {
   alert("GANASTE!!!");
+  // var startButton = document.createElement("button");
 };
 
 // popMatchInArray() deletes the matched numbers from the sorted array
