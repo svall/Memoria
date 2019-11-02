@@ -56,8 +56,8 @@ function sortFunc(a, b) {
 
 // resetCards() sets the timer to turn back cards if there's no match
 function resetCards() {
-  document.getElementById(selectedDivA).style.opacity = "0.2";
-  document.getElementById(selectedDivB).style.opacity = "0.2";
+  document.getElementById(selectedDivA).style.opacity = "0.0";
+  document.getElementById(selectedDivB).style.opacity = "0.0";
 };
 
 // newGame() reshuffles the image array and displays them again
@@ -71,7 +71,7 @@ function newGame() {
   for(var i = 0; i < newGameArray.length; i++) {
     var selectedNewCard = document.getElementsByClassName("cartas")[i];
     selectedNewCard.src = newGameArray[i];
-    selectedNewCard.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.2';
+    selectedNewCard.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.0';
     // document.getElementById("buttonDiv").style.opacity = 0.1;
   };
 };
@@ -86,7 +86,7 @@ function newImg () {
     // newImgDiv.setAttribute("id","img"+i);
     newImgDiv.id = "carta"+i;
     newImgDiv.src = numArray[i];
-    newImgDiv.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.2';
+    newImgDiv.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.0';
     // contImgDiv.style.backgroundColor = "red";
     newImgDiv.addEventListener("click", selectCard);
     var containerDiv = document.getElementById("smallContainer");
@@ -111,7 +111,24 @@ function hideWinDiv () {
 function alertWin() {
   var popup = document.getElementById("winPopupCont");
   popup.style.display = "inline-block";
-  setTimeout(hideWinDiv,3000);
+  setTimeout(hideWinDiv,4000);
+};
+
+// popMatchInArray() deletes the matched numbers from the sorted array
+function popMatchInArrayReplay() {
+  console.log("Full Array " + newGameArray)
+  var toDeleteA = newGameArray.indexOf(parseInt(selectedCardA[0]));
+  newGameArray.splice(toDeleteA,1);
+  console.log("Full Array " + newGameArray)
+  var toDeleteB = newGameArray.indexOf(parseInt(selectedCardB[0]));
+  newGameArray.splice(toDeleteB,1);
+  console.log("Full Array " + newGameArray)
+  document.getElementById(selectedDivA).style.backgroundColor = "orange";
+  document.getElementById(selectedDivB).style.backgroundColor = "orange";
+  if (newGameArray.length === 0) {
+    setTimeout(alertWin, 200);
+    // alert("GANASTE!!!");
+  };
 };
 
 // popMatchInArray() deletes the matched numbers from the sorted array
@@ -125,10 +142,10 @@ function popMatchInArray() {
   // console.log("Full Array " + numArray)
   document.getElementById(selectedDivA).style.backgroundColor = "orange";
   document.getElementById(selectedDivB).style.backgroundColor = "orange";
-  if (numArray.length === 0 && newGameArray.length === 0) {
+  if (numArray.length === 0) {
     setTimeout(alertWin, 200);
     // alert("GANASTE!!!");
-  }
+  };
 };
 
 // compareCards() compares if the two selections are a match or not
@@ -136,7 +153,11 @@ function compareCards() {
   comparer = 0;
   if (selectedCardA[0] === selectedCardB[0]) {
     console.log("Match " + selectedCardA[0]);
-    popMatchInArray()
+    if (numArray.length === 0) {
+      popMatchInArrayReplay();
+    } else {
+      popMatchInArray();
+    };
     selectedCardA.pop();
     selectedCardB.pop();
   } else {
@@ -144,20 +165,20 @@ function compareCards() {
     setTimeout(resetCards, 700);
     selectedCardA.pop();
     selectedCardB.pop();
-  }
+  };
 };
 
 // selectCard() stores the click selection for two cards
 function selectCard() {
-  this.style.opacity = "0.9";
+  this.style.opacity = "1";
   if (comparer === 0 && selectedCardA.length === 0) {
     selectedCardA.push(this.src);
-    console.log("A is at " + selectedCardA[0] + " && B is at " + selectedCardB[0]);
+    // console.log("A is at " + selectedCardA[0] + " && B is at " + selectedCardB[0]);
     selectedDivA = (this.id);
     comparer += 1;
   } else if (selectedCardB.length === 0 && selectedCardA.length === 1) {
     selectedCardB.push(this.src);
-    console.log("A is at " + selectedCardA[0] + " && B is at " + selectedCardB[0]);
+    // console.log("A is at " + selectedCardA[0] + " && B is at " + selectedCardB[0]);
     selectedDivB = (this.id);
     comparer += 1;
       if (comparer === 2) {

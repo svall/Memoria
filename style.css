@@ -1,22 +1,29 @@
+body {
+  background-color: #F0F0F0;
+}
+
 
 #generalContainer {
   /*background-color: lightgreen;*/
   height: 98%;
   width: 98%;
   margin: auto;
-  padding-top: 10px;
+  /*padding-top: 10px;*/
 }
 
 h1 {
   text-align: center;
   font-size: 60px;
+  margin-top: 30px;
+  margin-bottom: 2px;
 }
 
-h3 {
+h4 {
   text-align: left;
   /*left: 30px;*/
   margin-left: 40px;
-  font-size: 35px;
+  font-size: 30px;
+  margin-bottom: 15px;
 }
 
 #smallContainer {
@@ -24,7 +31,7 @@ h3 {
   height: 90%;
   width: 95%;
   margin: auto;
-  margin-top: 10px
+  /*margin-top: 10px;*/
 }
 
 .cartasCont {
@@ -33,33 +40,24 @@ h3 {
   text-align: center;
   vertical-align: middle;
   margin: 1px;
-  height: 218px;
+  height: 240px;
   width: 218px;
   border: 2px solid black;
   /*position: relative;*/
 }
 
-#buttonDiv {
-  /*display: inline;*/
-  /*margin-left: 2px;*/
-  /*background-color: lightblue;*/
-  /*height: 5px;*/
-  /*width: 10px;*/
-  /*opacity: 0.8;*/
-}
-
 #buttonId {
   background-color: orange;
-  border: 2px solid black;
+  border: 10px solid yellow;
   position: absolute;
   right: 50px;
-  /*top: 200px;*/
   font-size: 25px;
   border-radius: 8px;
   padding: 2px;
-  height: 50px;
-  width: 280px;
+  height: 90px;
+  width: 180px;
   opacity: 0.9;
+  top: 110px;
 }
 
 #winPopupCont {
@@ -67,7 +65,9 @@ h3 {
   /*height: 50px;*/
   /*background-color: lightblue;*/
   display: none;
-  margin-bottom: 20px;
+  margin-top: 45px;
+  margin-bottom: -30px;
+  /*margin-bottom: 20px;*/
   /*position: absolute;*/
   /*left: 450px;*/
 }
