@@ -61,3 +61,34 @@ h3 {
   width: 280px;
   opacity: 0.9;
 }
+
+#winPopupCont {
+  width: 100%;
+  /*height: 50px;*/
+  /*background-color: lightblue;*/
+  display: none;
+  margin-bottom: 20px;
+  /*position: absolute;*/
+  /*left: 450px;*/
+}
+
+#winPopup {
+  /*position: relative;*/
+  width: 95%;
+  height: 95%;
+  background-color: lightblue;
+  text-align: center;
+  line-height: 100px;
+  font-size:100px;
+  color: yellow;
+  border: 15px solid yellow;
+  /*vertical-align: middle;*/
+  /*margin-bottom: 20px;*/
+}
+
+
+
+
+
+
+

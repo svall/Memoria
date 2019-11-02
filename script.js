@@ -101,11 +101,17 @@ function newImg () {
   buttonDiv.appendChild(startButton);
 };
 
+// hideWinDiv() toggles the win message after a few seconds
+function hideWinDiv () {
+  var popup = document.getElementById("winPopupCont");
+  popup.style.display = "none";
+};
+
 // alertWin() displays the replay button
 function alertWin() {
-  // var buttonDiv = document.getElementById("buttonId");
-  // buttonDiv.style.opacity = "0.9"
-  alert("GANASTE!");
+  var popup = document.getElementById("winPopupCont");
+  popup.style.display = "inline-block";
+  setTimeout(hideWinDiv,3000);
 };
 
 // popMatchInArray() deletes the matched numbers from the sorted array
@@ -120,7 +126,7 @@ function popMatchInArray() {
   document.getElementById(selectedDivA).style.backgroundColor = "orange";
   document.getElementById(selectedDivB).style.backgroundColor = "orange";
   if (numArray.length === 0) {
-    setTimeout(alertWin, 300);
+    setTimeout(alertWin, 200);
     // alert("GANASTE!!!");
   }
 };
