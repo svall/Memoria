@@ -18,9 +18,52 @@ function sortFunc(a, b) {
   return 0.5 - Math.random();
 };
 
+// resetCards() sets the timer to turn back cards if there's no match
+function resetCards() {
+  document.getElementById(selectedDivA).style.opacity = "0.0";
+  document.getElementById(selectedDivB).style.opacity = "0.0";
+};
+
+// newGame() reshuffles the image array and displays them again
+// function newGame() {
+
+// }
+
+// newImg() creates the image divs and appends them to the container div
+function newImg () {
+  for(var i = 0; i < numArray.length; i++) {
+    var newImgDiv = document.createElement("Img");
+    var contImgDiv = document.createElement("div");
+    newImgDiv.setAttribute("class","cartas");
+    contImgDiv.setAttribute("class","cartasCont");
+    // newImgDiv.setAttribute("id","img"+i);
+    newImgDiv.id = "carta"+i;
+    newImgDiv.src = numArray[i];
+    newImgDiv.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.0';
+    // contImgDiv.style.backgroundColor = "red";
+    newImgDiv.addEventListener("click", selectCard);
+    var containerDiv = document.getElementById("smallContainer");
+    contImgDiv.appendChild(newImgDiv);
+    containerDiv.appendChild(contImgDiv);
+  }
+  var startButton = document.createElement("button");
+  startButton.innerText = "VOLVER A EMPEZAR!"
+  startButton.id = "buttonId";
+  // startButton.addEventListener("click", newGame);
+  var buttonDiv = document.getElementById("buttonDiv");
+  buttonDiv.appendChild(startButton);
+};
+
 function alertWin() {
-  alert("GANASTE!!!");
+  // alert("GANASTE!!!");
+  var buttonDiv = document.getElementById("buttonId");
+  buttonDiv.style.opacity = "0.9"
+  // var buttonDiv = document.getElementById("buttonDiv");
   // var startButton = document.createElement("button");
+  // startButton.innerText = "VOLVER A EMPEZAR!"
+  // startButton.addEventListener("click", newGame);
+  // var buttonDiv = document.getElementById("buttonDiv");
+  // buttonDiv.appendChild(startButton);
 };
 
 // popMatchInArray() deletes the matched numbers from the sorted array
@@ -38,12 +81,6 @@ function popMatchInArray() {
     setTimeout(alertWin, 900);
     // alert("GANASTE!!!");
   }
-};
-
-// resetCards() sets the timer to turn back cards if there's no match
-function resetCards() {
-  document.getElementById(selectedDivA).style.opacity = "0.0";
-  document.getElementById(selectedDivB).style.opacity = "0.0";
 };
 
 // compareCards() compares if the two selections are a match or not
@@ -84,23 +121,5 @@ function selectCard() {
   console.log("counter is at " + counter);
 };
 
-// newImg() creates the image divs and appends them to the container div
-function newImg () {
-  for(var i = 0; i < numArray.length; i++) {
-    var newImgDiv = document.createElement("Img");
-    var contImgDiv = document.createElement("div");
-    newImgDiv.setAttribute("class","cartas");
-    contImgDiv.setAttribute("class","cartasCont");
-    // newImgDiv.setAttribute("id","img"+i);
-    newImgDiv.id = "carta"+i;
-    newImgDiv.src = numArray[i];
-    newImgDiv.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.0';
-    // contImgDiv.style.backgroundColor = "red";
-    newImgDiv.addEventListener("click", selectCard);
-    var containerDiv = document.getElementById("smallContainer");
-    contImgDiv.appendChild(newImgDiv);
-    containerDiv.appendChild(contImgDiv);
-  }
-};
 
 newImg();
