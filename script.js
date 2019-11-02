@@ -8,10 +8,8 @@ var comparer = 0;
 var selectedDivA;
 var selectedDivB;
 var imageArray = ["images/molu1.jpg", "images/molu1.jpg","images/lu2.jpg", "images/lu2.jpg","images/mo1.jpg", "images/mo1.jpg","images/su2.jpg", "images/su2.jpg","images/su.jpg", "images/su.jpg", "images/la2.jpg", "images/la2.jpg", "images/la3.jpg", "images/la3.jpg", "images/se1.jpg", "images/se1.jpg"];
-
-// randomize img array but with double the images
-var numArray=imageArray.sort(sortFunc);
-// console.log(numArray);
+var arrayCopy = [...imageArray];
+var numArray=arrayCopy.sort(sortFunc);
 
 // sortFunc() scrambles the array
 function sortFunc(a, b) {
@@ -20,14 +18,25 @@ function sortFunc(a, b) {
 
 // resetCards() sets the timer to turn back cards if there's no match
 function resetCards() {
-  document.getElementById(selectedDivA).style.opacity = "0.0";
-  document.getElementById(selectedDivB).style.opacity = "0.0";
+  document.getElementById(selectedDivA).style.opacity = "0.2";
+  document.getElementById(selectedDivB).style.opacity = "0.2";
 };
 
 // newGame() reshuffles the image array and displays them again
-// function newGame() {
+function newGame() {
+  console.log("GANASTEEEE");
+// reshuffle array
+  var arrayCopy = [...imageArray];
+  var newGameArray = arrayCopy.sort(sortFunc);
 
-// }
+  // select divs to append new images with opacity 0
+  for(var i = 0; i < newGameArray.length; i++) {
+    var selectedNewCard = document.getElementsByClassName("cartas")[i];
+    selectedNewCard.src = newGameArray[i];
+    selectedNewCard.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.2';
+    document.getElementById("buttonDiv").style.opacity = 0.1;
+  };
+};
 
 // newImg() creates the image divs and appends them to the container div
 function newImg () {
@@ -39,7 +48,7 @@ function newImg () {
     // newImgDiv.setAttribute("id","img"+i);
     newImgDiv.id = "carta"+i;
     newImgDiv.src = numArray[i];
-    newImgDiv.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.0';
+    newImgDiv.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.2';
     // contImgDiv.style.backgroundColor = "red";
     newImgDiv.addEventListener("click", selectCard);
     var containerDiv = document.getElementById("smallContainer");
@@ -49,7 +58,7 @@ function newImg () {
   var startButton = document.createElement("button");
   startButton.innerText = "VOLVER A EMPEZAR!"
   startButton.id = "buttonId";
-  // startButton.addEventListener("click", newGame);
+  startButton.addEventListener("click", newGame);
   var buttonDiv = document.getElementById("buttonDiv");
   buttonDiv.appendChild(startButton);
 };
