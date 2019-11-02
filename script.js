@@ -56,8 +56,8 @@ function sortFunc(a, b) {
 
 // resetCards() sets the timer to turn back cards if there's no match
 function resetCards() {
-  document.getElementById(selectedDivA).style.opacity = "0.0";
-  document.getElementById(selectedDivB).style.opacity = "0.0";
+  document.getElementById(selectedDivA).style.opacity = "0.2";
+  document.getElementById(selectedDivB).style.opacity = "0.2";
 };
 
 // newGame() reshuffles the image array and displays them again
@@ -71,7 +71,7 @@ function newGame() {
   for(var i = 0; i < newGameArray.length; i++) {
     var selectedNewCard = document.getElementsByClassName("cartas")[i];
     selectedNewCard.src = newGameArray[i];
-    selectedNewCard.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.0';
+    selectedNewCard.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.2';
     // document.getElementById("buttonDiv").style.opacity = 0.1;
   };
 };
@@ -86,7 +86,7 @@ function newImg () {
     // newImgDiv.setAttribute("id","img"+i);
     newImgDiv.id = "carta"+i;
     newImgDiv.src = numArray[i];
-    newImgDiv.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.0';
+    newImgDiv.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.2';
     // contImgDiv.style.backgroundColor = "red";
     newImgDiv.addEventListener("click", selectCard);
     var containerDiv = document.getElementById("smallContainer");
@@ -116,16 +116,16 @@ function alertWin() {
 
 // popMatchInArray() deletes the matched numbers from the sorted array
 function popMatchInArray() {
-  console.log("Full Array " + numArray)
+  // console.log("Full Array " + numArray)
   var toDeleteA = numArray.indexOf(parseInt(selectedCardA[0]));
   numArray.splice(toDeleteA,1);
-  console.log("Full Array " + numArray)
+  // console.log("Full Array " + numArray)
   var toDeleteB = numArray.indexOf(parseInt(selectedCardB[0]));
   numArray.splice(toDeleteB,1);
-  console.log("Full Array " + numArray)
+  // console.log("Full Array " + numArray)
   document.getElementById(selectedDivA).style.backgroundColor = "orange";
   document.getElementById(selectedDivB).style.backgroundColor = "orange";
-  if (numArray.length === 0) {
+  if (numArray.length === 0 && newGameArray.length === 0) {
     setTimeout(alertWin, 200);
     // alert("GANASTE!!!");
   }
