@@ -7,9 +7,47 @@ var counter = 0;
 var comparer = 0;
 var selectedDivA;
 var selectedDivB;
-var imageArray = ["images/molu1.jpg", "images/molu1.jpg","images/lu2.jpg", "images/lu2.jpg","images/mo1.jpg", "images/mo1.jpg","images/su2.jpg", "images/su2.jpg","images/su.jpg", "images/su.jpg", "images/la2.jpg", "images/la2.jpg", "images/la3.jpg", "images/la3.jpg", "images/se1.jpg", "images/se1.jpg"];
+
+var masterImageArray = [
+  "images/molu1.jpg",
+  "images/lu2.jpg",
+  "images/mo1.jpg",
+  "images/su2.jpg",
+  "images/su.jpg",
+  "images/la2.jpg",
+  "images/la3.jpg",
+  "images/se1.jpg",
+  "images/sesu1.jpg",
+  "images/la1.jpg",
+  "images/lasu1.jpg",
+  "images/lu1.jpg",
+  "images/mo2.jpg",
+  "images/mo3.jpg",
+  "images/mosu1.jpg",
+  "images/se2.jpg",
+  "images/se3.jpg"
+];
+
+var imageArray = [];
+
+// add 8 random images and duplicate the array with spread ...
+function random8Imgs () {
+  var masterImageArrayCopy = [...masterImageArray];
+  var masterImageArrayScramb = masterImageArrayCopy.sort(sortFunc);
+  var masterArr8 = [];
+  for(var i = 0; i < 8; i++) {
+    masterArr8.push(masterImageArrayScramb[i]);
+  };
+  imageArray = [...masterArr8, ...masterArr8];
+  return imageArray;
+};
+
+random8Imgs();
+
+// var imageArray = ["images/molu1.jpg", "images/molu1.jpg","images/lu2.jpg", "images/lu2.jpg","images/mo1.jpg", "images/mo1.jpg","images/su2.jpg", "images/su2.jpg","images/su.jpg", "images/su.jpg", "images/la2.jpg", "images/la2.jpg", "images/la3.jpg", "images/la3.jpg", "images/se1.jpg", "images/se1.jpg"];
 var arrayCopy = [...imageArray];
 var numArray=arrayCopy.sort(sortFunc);
+var newGameArray = []
 
 // sortFunc() scrambles the array
 function sortFunc(a, b) {
@@ -25,16 +63,16 @@ function resetCards() {
 // newGame() reshuffles the image array and displays them again
 function newGame() {
   console.log("GANASTEEEE");
-// reshuffle array
+  // reshuffle array
+  random8Imgs();
   var arrayCopy = [...imageArray];
-  var newGameArray = arrayCopy.sort(sortFunc);
-
+  newGameArray = arrayCopy.sort(sortFunc);
   // select divs to append new images with opacity 0
   for(var i = 0; i < newGameArray.length; i++) {
     var selectedNewCard = document.getElementsByClassName("cartas")[i];
     selectedNewCard.src = newGameArray[i];
     selectedNewCard.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.2';
-    document.getElementById("buttonDiv").style.opacity = 0.1;
+    // document.getElementById("buttonDiv").style.opacity = 0.1;
   };
 };
 
@@ -63,16 +101,11 @@ function newImg () {
   buttonDiv.appendChild(startButton);
 };
 
+// alertWin() displays the replay button
 function alertWin() {
-  // alert("GANASTE!!!");
-  var buttonDiv = document.getElementById("buttonId");
-  buttonDiv.style.opacity = "0.9"
-  // var buttonDiv = document.getElementById("buttonDiv");
-  // var startButton = document.createElement("button");
-  // startButton.innerText = "VOLVER A EMPEZAR!"
-  // startButton.addEventListener("click", newGame);
-  // var buttonDiv = document.getElementById("buttonDiv");
-  // buttonDiv.appendChild(startButton);
+  // var buttonDiv = document.getElementById("buttonId");
+  // buttonDiv.style.opacity = "0.9"
+  alert("GANASTE!");
 };
 
 // popMatchInArray() deletes the matched numbers from the sorted array
@@ -87,7 +120,7 @@ function popMatchInArray() {
   document.getElementById(selectedDivA).style.backgroundColor = "orange";
   document.getElementById(selectedDivB).style.backgroundColor = "orange";
   if (numArray.length === 0) {
-    setTimeout(alertWin, 900);
+    setTimeout(alertWin, 300);
     // alert("GANASTE!!!");
   }
 };
@@ -129,6 +162,5 @@ function selectCard() {
   console.log("comparer is at " + comparer);
   console.log("counter is at " + counter);
 };
-
 
 newImg();
