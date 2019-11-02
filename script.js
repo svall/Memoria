@@ -56,8 +56,8 @@ function sortFunc(a, b) {
 
 // resetCards() sets the timer to turn back cards if there's no match
 function resetCards() {
-  document.getElementById(selectedDivA).style.opacity = "0.2";
-  document.getElementById(selectedDivB).style.opacity = "0.2";
+  document.getElementById(selectedDivA).style.opacity = "0.0";
+  document.getElementById(selectedDivB).style.opacity = "0.0";
 };
 
 // newGame() reshuffles the image array and displays them again
@@ -71,7 +71,7 @@ function newGame() {
   for(var i = 0; i < newGameArray.length; i++) {
     var selectedNewCard = document.getElementsByClassName("cartas")[i];
     selectedNewCard.src = newGameArray[i];
-    selectedNewCard.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.2';
+    selectedNewCard.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.0';
     // document.getElementById("buttonDiv").style.opacity = 0.1;
   };
 };
@@ -86,7 +86,7 @@ function newImg () {
     // newImgDiv.setAttribute("id","img"+i);
     newImgDiv.id = "carta"+i;
     newImgDiv.src = numArray[i];
-    newImgDiv.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.2';
+    newImgDiv.style.cssText = 'height:97%;width:97%;display:inline-block;padding:3px;opacity:0.0';
     // contImgDiv.style.backgroundColor = "red";
     newImgDiv.addEventListener("click", selectCard);
     var containerDiv = document.getElementById("smallContainer");
